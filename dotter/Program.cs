@@ -6,9 +6,168 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            Currencies();
+            Catcher();
             Console.ReadKey(true);
 
+        }
+
+        static void Catcher()
+        {
+            int number;
+            int lower, higher;
+            int triesCount = 5;
+            int userInput;
+            Random rand = new Random();
+
+            number = rand.Next(0, 101);
+            lower = rand.Next(number - 10, number);
+            higher = rand.Next(number + 1, number + 10);
+
+            Console.WriteLine($"Guess the number! It's lower then {lower}, but higher then {higher}");
+            Console.WriteLine($"You have {triesCount} tries ");
+
+            while(triesCount-- > 0)
+            {
+                Console.WriteLine("Your answer: ");
+                userInput = Convert.ToInt32(Console.ReadLine());
+                if(userInput == number)
+                {
+                    Console.WriteLine($"You right! It was {number}.");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"No, try again!\nYou have {triesCount} tries left");
+                }
+            }
+
+            if(triesCount < 0)
+            {
+                Console.WriteLine($"You lost!\nIt was {number}");
+            }
+        }
+
+        static void Randomizer()
+        {
+            Random rand = new Random();
+            int value;
+
+            while(true)
+            {
+                value = rand.Next(0, 9);
+                Console.WriteLine(value);
+                Console.ReadKey();
+
+            }
+        }
+
+        static void Fight()
+        {
+            Int16 playerHealth, playerDamage, enemyHealth, enemyDamage;
+
+            Console.Write("Player health: ");
+            playerHealth = Convert.ToInt16(Console.ReadLine());
+
+            Console.Write("Player damage: ");
+            playerDamage = Convert.ToInt16(Console.ReadLine());
+
+            Console.Write("Enemy health: ");
+            enemyHealth = Convert.ToInt16(Console.ReadLine());
+
+            Console.Write("Enemy damage: ");
+            enemyDamage = Convert.ToInt16(Console.ReadLine());
+
+            while (playerHealth > 0 && enemyHealth > 0)
+            {
+                playerHealth -= enemyDamage;
+                enemyHealth -= playerDamage;
+
+                Console.WriteLine($"{playerHealth} - player");
+                Console.WriteLine($"{enemyHealth} - enemy");
+            }
+            if (playerHealth <= 0 && enemyHealth <= 0)
+            {
+                Console.WriteLine("No one wins");
+            }
+            else if (enemyHealth <= 0)
+            {
+                Console.WriteLine("Player wins");
+            }
+            else if (playerHealth <= 0)
+            {
+                Console.WriteLine("Enemy wins");
+            }
+        }
+
+        static void Deposit()
+        {
+            float money;
+            Int16 years, percent;
+
+            Console.Write("Money on deposit: ");
+            money = Convert.ToSingle(Console.ReadLine());
+            Console.Write("How many years: ");
+            years = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Which percent: ");
+            percent = Convert.ToInt16(Console.ReadLine());
+
+            for(int i = 0; i < years; i++)
+            {
+                money += money / 100 * percent;
+                Console.WriteLine($"This year you earn {money}");
+                Console.ReadKey(true);
+            }
+        }
+
+        static void Counter()
+        {
+            int triesCount = 5;
+            string password = "password";
+            string userInput;
+
+            for (int i = 0; i < triesCount; i++)
+            {
+                Console.Write("Enter password: ");
+                userInput = Console.ReadLine();
+                if (userInput == password)
+                {
+                    Console.WriteLine("Access granted");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect password entered");
+                    Console.WriteLine($"You have {triesCount - i - 1} tries left");
+                }
+            }
+        }
+
+        static void Looper()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+        static void LooperWhile()
+        {
+            Console.Write("Enter your age: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            while (age-- > 0)
+            {
+                if (age == 8)
+                {
+                    continue;
+                }
+                Console.WriteLine($"you were {age}");
+
+                if(age == 5)
+                {
+                    break;
+                }
+            }
         }
 
         static void Currencies()
