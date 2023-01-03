@@ -6,9 +6,49 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            Catcher();
+            Fighters();
             Console.ReadKey(true);
 
+        }
+
+        static void Fighters()
+        {
+            Random rand = new Random();
+            float health1, health2;
+            int damage1, armor1;
+            int damage2, armor2;
+
+            health1 = rand.Next(90, 110);
+            damage1 = rand.Next(25, 35);
+            armor1 = rand.Next(45, 65);
+            health2 = rand.Next(80, 120);
+            damage2 = rand.Next(20, 40);
+            armor2 = rand.Next(60, 80);
+
+            Console.WriteLine($"Gladiator 1 \n Health: {health1},\n Damage {damage1},\n Armor {armor1}");
+            Console.WriteLine($"Gladiator 2 \n Health: {health2},\n Damage {damage2},\n Armor {armor2}");
+
+            while(health1 > 0 && health2 > 0)
+            {
+                health1 -= Convert.ToSingle(rand.Next(0, damage2 + 1)) / 100 * armor1;
+                health2 -= Convert.ToSingle(rand.Next(0, damage1 + 1)) / 100 * armor2;
+
+                Console.WriteLine($"Gladiator 1 health: {health1}");
+                Console.WriteLine($"Gladiator 2 health: {health2}");
+            }
+
+            if(health1 <= 0 && health2 <= 0)
+            {
+                Console.WriteLine("No one wins");
+            }
+            else if(health1 <= 0)
+            {
+                Console.WriteLine("Gladiator 1 is dead");
+            }
+            else if (health2 <= 0)
+            {
+                Console.WriteLine("Gladiator 2 is dead");
+            }
         }
 
         static void Catcher()
