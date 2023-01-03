@@ -6,9 +6,28 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            Fighters();
+            Collections();
             Console.ReadKey(true);
 
+        }
+
+        static void Collections()
+        {
+            int[] items = new int[10];
+            //Console.WriteLine(items[0]);
+
+            //Console.WriteLine(items.Length);
+
+            items[7] = 13;
+            items[3] = 3;
+
+            Random rand = new Random();
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                items[i] = rand.Next(0, 101);
+                Console.Write(items[i] + " ");
+            }
         }
 
         static void Fighters()
@@ -36,7 +55,7 @@ namespace CSLight
                 Console.WriteLine($"Gladiator 1 health: {health1}");
                 Console.WriteLine($"Gladiator 2 health: {health2}");
             }
-
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
             if(health1 <= 0 && health2 <= 0)
             {
                 Console.WriteLine("No one wins");
