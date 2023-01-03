@@ -6,27 +6,97 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            Collections();
+            PlaneChecker();
             Console.ReadKey(true);
 
+        }
+        /// Collections
+        static void PlaneChecker()
+        {
+            int[] sectors = { 6, 28, 15, 15, 17 };
+            bool isOpen = true;
+            while (isOpen)
+            {
+                Console.SetCursorPosition(0, 20);
+                for (int i = 0; i < sectors.Length; i++)
+                {
+                    Console.WriteLine($"There are {sectors[i]} free seats in {i + 1} sector");
+                }
+
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("Check-in terminal");
+                Console.WriteLine("\n\n1 - reserve\n\n2- exit");
+                Console.WriteLine("Enter command number");
+
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        int userSector, userPlaceAmount;
+                        Console.WriteLine("Enter sector");
+                        userSector = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                        if(sectors.Length <= userSector || userSector < 0)
+                        {
+                            Console.WriteLine("there is no such sector in there");
+                            break;
+                        }
+
+                        Console.Write("How many seats?");
+                        userPlaceAmount = Convert.ToInt32(Console.ReadLine());
+                        if(userPlaceAmount < 0)
+                        {
+                            Console.WriteLine("Wrong number");
+                            break;
+                        }
+                        if (sectors[userSector] < userPlaceAmount)
+                        {
+                            Console.WriteLine($"wrong places number in {userSector} sector\nOnly available {sectors[userSector]} places");
+                            break;
+                        }
+                        sectors[userSector] -= userPlaceAmount;
+                        Console.WriteLine("DONE!");
+                        break;
+                    case 2:
+                        isOpen = false;
+                        break;
+                    case 3:
+                        break;
+                }
+
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+
+        static void AdvancedCollections()
+        {
+            int[] array = { 2, 3, 24, 7, 8};
+            int max = int.MinValue;
+
+            for(int i = 0; i < array.Length; i++)
+            {
+                if(max < array[i])
+                {
+                    max = array[i];
+                }
+            }
+
+            Console.WriteLine(max);
         }
 
         static void Collections()
         {
-            int[] items = new int[10];
-            //Console.WriteLine(items[0]);
-
-            //Console.WriteLine(items.Length);
-
-            items[7] = 13;
-            items[3] = 3;
-
-            Random rand = new Random();
+            int[] items = { 0, 12, 54, int.MinValue, int.MaxValue, 66 };
+            int[] itemsFixed = new int[3] { 1, 2 ,3 };
 
             for (int i = 0; i < items.Length; i++)
             {
-                items[i] = rand.Next(0, 101);
                 Console.Write(items[i] + " ");
+            }
+            Console.WriteLine();
+            for (int i = 0; i < itemsFixed.Length; i++)
+            {
+                Console.Write(itemsFixed[i] + " ");
             }
         }
 
